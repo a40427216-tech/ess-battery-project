@@ -1,0 +1,47 @@
+{
+  "raw_cells": 139,
+  "analysis_cells": 115,
+  "raw_counts": {
+    "1": 46,
+    "2": 47,
+    "3": 46
+  },
+  "analysis_counts": {
+    "1": 36,
+    "2": 39,
+    "3": 40
+  },
+  "excluded_cells": 24,
+  "missing_labels": 10,
+  "eol_tolerance_Ah": 0.885,
+  "eol_nominal_Ah": 0.88,
+  "raw_vs_summary_qd_max_error_Ah": 0.0,
+  "batch2_newstructure_cells": 9,
+  "batch2_missing_labels": [
+    "b2c22",
+    "b2c23",
+    "b2c35",
+    "b2c36",
+    "b2c37",
+    "b2c38",
+    "b2c39",
+    "b2c40"
+  ],
+  "batch1_incomplete_cells": [
+    "b1c0",
+    "b1c1",
+    "b1c2",
+    "b1c3",
+    "b1c4",
+    "b1c8",
+    "b1c10",
+    "b1c12",
+    "b1c13",
+    "b1c22"
+  ],
+  "batch2_continuation_merge_applied": false,
+  "reason_for_no_merge": "2018-02-20 source is not the 2017-06-30 continuation batch used in the published loader; policies differ and barcode-like descriptors repeat.",
+  "cycle_number_rule": "summary.cycle labels are matched directly to HDF5 cycles; discharge capacities verified.",
+  "feature_window": "2 through 100 inclusive; the structural zero in Batch 1 cycle 1 is excluded.",
+  "batch3_exclusion_source": "https://github.com/rdbraatz/data-driven-prediction-of-battery-cycle-life-before-capacity-degradation/blob/master/Load%20Data.ipynb"
+}

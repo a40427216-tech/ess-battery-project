@@ -1,0 +1,326 @@
+{
+  "selected_model": "ElasticNet / discharge",
+  "feature_set": "discharge",
+  "features": [
+    "delta_q_logvar",
+    "delta_q_min",
+    "QD_2",
+    "QD_slope"
+  ],
+  "best_params": {
+    "regressor__model__alpha": 0.01,
+    "regressor__model__l1_ratio": 0.5
+  },
+  "selection_criterion": "Minimum mean outer group-CV MAPE on Batch 1 development; ties by fewer features/name",
+  "selection_uses_only_cells": [
+    "b1c9",
+    "b1c11",
+    "b1c14",
+    "b1c15",
+    "b1c16",
+    "b1c17",
+    "b1c18",
+    "b1c19",
+    "b1c20",
+    "b1c21",
+    "b1c24",
+    "b1c25",
+    "b1c26",
+    "b1c27",
+    "b1c28",
+    "b1c29",
+    "b1c30",
+    "b1c31",
+    "b1c32",
+    "b1c33",
+    "b1c34",
+    "b1c35",
+    "b1c36",
+    "b1c37",
+    "b1c42",
+    "b1c43",
+    "b1c44",
+    "b1c45"
+  ],
+  "fit_cells": [
+    "b1c9",
+    "b1c11",
+    "b1c14",
+    "b1c15",
+    "b1c16",
+    "b1c17",
+    "b1c18",
+    "b1c19",
+    "b1c20",
+    "b1c21",
+    "b1c24",
+    "b1c25",
+    "b1c26",
+    "b1c27",
+    "b1c28",
+    "b1c29",
+    "b1c30",
+    "b1c31",
+    "b1c32",
+    "b1c33",
+    "b1c34",
+    "b1c35",
+    "b1c36",
+    "b1c37",
+    "b1c42",
+    "b1c43",
+    "b1c44",
+    "b1c45"
+  ],
+  "n_fit": 28,
+  "target": "total cycle_life; not remaining life",
+  "target_transform": "log10 / inverse 10**x",
+  "random_state": 42,
+  "feature_table_sha256": "c2e2e03a0f9a3226b26ef60a68316408f67e469449595130571097475f06b31e",
+  "split_sha256": "79e612f717bc8da0683f6ab499d462944b593d33170dfc20f1cd4f440e717685",
+  "candidate_grids": [
+    {
+      "name": "Dummy median",
+      "feature_set": "variance",
+      "grid": {}
+    },
+    {
+      "name": "Variance linear",
+      "feature_set": "variance",
+      "grid": {}
+    },
+    {
+      "name": "Ridge / variance",
+      "feature_set": "variance",
+      "grid": {
+        "regressor__model__alpha": [
+          0.01,
+          0.1,
+          1.0,
+          10.0,
+          100.0
+        ]
+      }
+    },
+    {
+      "name": "Ridge / discharge",
+      "feature_set": "discharge",
+      "grid": {
+        "regressor__model__alpha": [
+          0.01,
+          0.1,
+          1.0,
+          10.0,
+          100.0
+        ]
+      }
+    },
+    {
+      "name": "Ridge / state",
+      "feature_set": "state",
+      "grid": {
+        "regressor__model__alpha": [
+          0.01,
+          0.1,
+          1.0,
+          10.0,
+          100.0
+        ]
+      }
+    },
+    {
+      "name": "Ridge / policy",
+      "feature_set": "policy",
+      "grid": {
+        "regressor__model__alpha": [
+          0.01,
+          0.1,
+          1.0,
+          10.0,
+          100.0
+        ]
+      }
+    },
+    {
+      "name": "Ridge / current",
+      "feature_set": "current",
+      "grid": {
+        "regressor__model__alpha": [
+          0.01,
+          0.1,
+          1.0,
+          10.0,
+          100.0
+        ]
+      }
+    },
+    {
+      "name": "ElasticNet / discharge",
+      "feature_set": "discharge",
+      "grid": {
+        "regressor__model__alpha": [
+          0.001,
+          0.01,
+          0.1
+        ],
+        "regressor__model__l1_ratio": [
+          0.1,
+          0.5,
+          0.9
+        ]
+      }
+    },
+    {
+      "name": "ElasticNet / state",
+      "feature_set": "state",
+      "grid": {
+        "regressor__model__alpha": [
+          0.001,
+          0.01,
+          0.1
+        ],
+        "regressor__model__l1_ratio": [
+          0.1,
+          0.5,
+          0.9
+        ]
+      }
+    },
+    {
+      "name": "ElasticNet / policy",
+      "feature_set": "policy",
+      "grid": {
+        "regressor__model__alpha": [
+          0.001,
+          0.01,
+          0.1
+        ],
+        "regressor__model__l1_ratio": [
+          0.1,
+          0.5,
+          0.9
+        ]
+      }
+    },
+    {
+      "name": "ElasticNet / current",
+      "feature_set": "current",
+      "grid": {
+        "regressor__model__alpha": [
+          0.001,
+          0.01,
+          0.1
+        ],
+        "regressor__model__l1_ratio": [
+          0.1,
+          0.5,
+          0.9
+        ]
+      }
+    },
+    {
+      "name": "SVR / variance",
+      "feature_set": "variance",
+      "grid": {
+        "regressor__model__C": [
+          0.1,
+          1.0,
+          10.0
+        ],
+        "regressor__model__gamma": [
+          "scale",
+          0.1
+        ],
+        "regressor__model__epsilon": [
+          0.02,
+          0.05
+        ]
+      }
+    },
+    {
+      "name": "SVR / discharge",
+      "feature_set": "discharge",
+      "grid": {
+        "regressor__model__C": [
+          0.1,
+          1.0,
+          10.0
+        ],
+        "regressor__model__gamma": [
+          "scale",
+          0.1
+        ],
+        "regressor__model__epsilon": [
+          0.02,
+          0.05
+        ]
+      }
+    },
+    {
+      "name": "SVR / state",
+      "feature_set": "state",
+      "grid": {
+        "regressor__model__C": [
+          0.1,
+          1.0,
+          10.0
+        ],
+        "regressor__model__gamma": [
+          "scale",
+          0.1
+        ],
+        "regressor__model__epsilon": [
+          0.02,
+          0.05
+        ]
+      }
+    },
+    {
+      "name": "RandomForest / discharge",
+      "feature_set": "discharge",
+      "grid": {
+        "regressor__model__max_depth": [
+          2,
+          3
+        ],
+        "regressor__model__min_samples_leaf": [
+          2,
+          4
+        ]
+      }
+    },
+    {
+      "name": "RandomForest / state",
+      "feature_set": "state",
+      "grid": {
+        "regressor__model__max_depth": [
+          2,
+          3
+        ],
+        "regressor__model__min_samples_leaf": [
+          2,
+          4
+        ]
+      }
+    },
+    {
+      "name": "RandomForest / policy",
+      "feature_set": "policy",
+      "grid": {
+        "regressor__model__max_depth": [
+          2,
+          3
+        ],
+        "regressor__model__min_samples_leaf": [
+          2,
+          4
+        ]
+      }
+    }
+  ],
+  "python": "3.11.15",
+  "sklearn": "1.9.1",
+  "frozen_at_utc_before_external_evaluation": "2026-10-02T00:14:25.727576+00:00",
+  "cv_limitation": "Outer CV ranks candidate families/feature sets, so selected CV performance can be optimistic. Hold-out is kept separate.",
+  "external_eda_limitation": "All batches were inspected in DAY 1 EDA; this is not a fully blinded study."
+}

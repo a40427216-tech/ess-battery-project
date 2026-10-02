@@ -1,0 +1,4 @@
+subset,n_cells,n_policy_groups,MAPE (%),bootstrap_2.5%,bootstrap_97.5%,method
+Batch 2,39,12,43.454483764412146,36.09820199102361,49.87055781138262,2000 policy-cluster bootstrap resamples; fixed model; approximate sampling interval
+Batch 3,40,8,11.711646756862871,8.517842969635376,15.914523982033472,2000 policy-cluster bootstrap resamples; fixed model; approximate sampling interval
+Hold-out,8,5,7.206879624104877,5.369502845308105,9.061906598265793,2000 policy-cluster bootstrap resamples; fixed model; approximate sampling interval

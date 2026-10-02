@@ -1,0 +1,32 @@
+[
+  {
+    "file": "processed/cells_analysis.csv",
+    "bytes": 20825,
+    "sha256": "8da43c9d92601ee817493ac10e27503aff485c3642ac5927c1d95555d7b2c8df"
+  },
+  {
+    "file": "processed/cells_raw.csv",
+    "bytes": 24256,
+    "sha256": "9b8336a862cd4bf2812bb70dea0bb7bcfbd2c16cbafd16d5f93dbf8be05848cb"
+  },
+  {
+    "file": "processed/early_curves.npz",
+    "bytes": 16893438,
+    "sha256": "a4d5085d3ceaa1b72e1abd214632bd8a63ffdbb12e4eaacd17377db0208ed3de"
+  },
+  {
+    "file": "processed/extraction_audit.json",
+    "bytes": 85423,
+    "sha256": "f939a2e5422dd22c7a5a60cf8025e9739b01813ec11aa667f1a2783eef0d0583"
+  },
+  {
+    "file": "processed/summary_analysis.csv.gz",
+    "bytes": 3842089,
+    "sha256": "82bcc51f532878ddf3f02d91275fe4093248ba5425b29b037d4397bfdfcdae82"
+  },
+  {
+    "file": "processed/summary_raw.csv.gz",
+    "bytes": 4815132,
+    "sha256": "80cdd23fe5736440095ad157d78fa0b87ee3c8935396747fb8cd752d871ea518"
+  }
+]
