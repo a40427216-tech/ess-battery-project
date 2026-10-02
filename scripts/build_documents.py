@@ -29,6 +29,11 @@ def build():
     pred = pd.read_csv(results/'selected_predictions.csv')
     coefficients = pd.read_csv(results/'model_coefficients.csv')
     stats = pd.read_csv(results/'batch_statistics.csv')
+    policy_stats = pd.read_csv(results/'policy_statistics.csv')
+    policy_means = policy_stats.loc[policy_stats.batch == 1].set_index('charging_policy')['mean'].to_dict()
+    early_features = pd.read_csv(results/'features.csv')
+    effective_rho = {int(batch): group.effective_c_rate.corr(group.cycle_life, method='spearman')
+                     for batch, group in early_features.groupby('batch')}
     bootstrap = pd.read_csv(results/'mape_bootstrap.csv')
     perf_table = table(performance)
     cv_table = table(comp[['model','n_features','CV MAPE mean (%)','CV MAPE std (%)']].head(8).rename(columns={
@@ -284,7 +289,7 @@ Batch 2의 초기 QD 수준이 다른 배치보다 높은데도 총수명은 짧
 
 ```text
 ΔQ(V) = Qdlin_cycle100(V) − Qdlin_cycle10(V)
-분산 피처 = log10(Var(ΔQ), ddof=1)
+분산 피처 = log10(Var(ΔQ, ddof=1))
 최솟값 피처 = min(ΔQ − median(ΔQ))
 ```
 
@@ -304,11 +309,11 @@ Batch 1·3에는 500사이클 미만 셀이 없으므로 두 배치 안에서 �
 
 ![충전 정책별 평균 수명과 표본 수](results/figures/06_policy.png)
 
-Batch 1에서 `8C(15%)-3.6C`의 평균 수명은 1,008사이클, `8C(35%)-3.6C`는 608사이클이다(각 n=2). 최대 C-rate가 같아도 고전류가 지속되는 SOC 구간과 이후 전류 단계가 다르면 수명이 달라질 수 있음을 보여준다.
+Batch 1에서 `8C(15%)-3.6C`의 평균 수명은 {policy_means['8C(15%)-3.6C']:,.1f}사이클, `8C(35%)-3.6C`는 {policy_means['8C(35%)-3.6C']:,.1f}사이클이다(각 n=2). 최대 C-rate가 같아도 고전류가 지속되는 SOC 구간과 이후 전류 단계가 다르면 수명이 달라질 수 있음을 보여준다.
 
 ![유효 C-rate와 총수명](results/figures/07_c_rate.png)
 
-0–80% SOC 구간의 정책 기반 유효 C-rate와 수명의 Spearman 상관은 Batch 1 −0.435, Batch 2 −0.321, Batch 3 −0.157이다. Batch 2·3의 유효 C-rate 범위가 좁아 단일 수치로는 정책별 수명 차이를 충분히 설명하기 어렵다.
+0–80% SOC 구간의 정책 기반 유효 C-rate와 수명의 Spearman 상관은 Batch 1 {effective_rho[1]:+.3f}, Batch 2 {effective_rho[2]:+.3f}, Batch 3 {effective_rho[3]:+.3f}이다. Batch 2는 양의 상관으로 다른 두 배치와 방향이 다르므로, 충전 속도만으로 수명을 일률적으로 설명할 수 없다. Batch 2·3의 유효 C-rate 범위가 좁아 단일 수치로는 정책별 수명 차이를 충분히 설명하기 어렵다.
 
 ![실측 충전 전류 패턴과 초기 용량 변화](results/figures/09_current_patterns.png)
 
@@ -568,7 +573,7 @@ Kaggle에 공개된 세 원본 파일을 사용했다. Batch 2는 2018-02-20이�
 ### 설계 연결
 
 초기 상태를 여러 신호로 요약하되 실제 EOL·knee·관측 길이를 입력에서 제외한다. 표본이 적으므로 강한 신호부터 시작하고 추가 피처의 효과를 검증한다.''',
-        '''## 4. ΔQ·충전 조건·상관관계
+        f'''## 4. ΔQ·충전 조건·상관관계
 
 ![전압별 초기 방전 곡선 차이](../results/figures/04_delta_q.png)
 
@@ -578,7 +583,7 @@ Kaggle에 공개된 세 원본 파일을 사용했다. Batch 2는 2018-02-20이�
 
 ### 충전 조건과 중복 신호
 
-B1의 같은 8C 최대 전류라도 15% SOC까지 유지한 정책의 평균 수명은 1,008, 35%까지 유지한 정책은 608사이클이다(n=2). 실측 충전 RMS와 초기 QD 기울기의 상관은 B1 −0.499, B2 −0.112, B3 −0.379다. 동일 정책에서도 셀 편차가 있고 배치별 관계가 달라 충전 속도 하나로 수명을 설명하지 않는다.
+B1의 같은 8C 최대 전류라도 15% SOC까지 유지한 정책의 평균 수명은 {policy_means['8C(15%)-3.6C']:,.1f}, 35%까지 유지한 정책은 {policy_means['8C(35%)-3.6C']:,.1f}사이클이다(n=2). 실측 충전 RMS와 초기 QD 기울기의 상관은 B1 −0.499, B2 −0.112, B3 −0.379다. 동일 정책에서도 셀 편차가 있고 배치별 관계가 달라 충전 속도 하나로 수명을 설명하지 않는다.
 
 B1 Tavg–Tmax의 r=0.953, ΔQ 로그 분산–중심화 최소의 r=−0.944다. 대표 온도 신호와 규제 모델을 사용하고, 관계를 인과로 단정하지 않는다.''',
         f'''## 5. 피처 엔지니어링과 구현

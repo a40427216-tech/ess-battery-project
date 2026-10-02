@@ -161,7 +161,7 @@ Batch 2의 초기 QD 수준이 다른 배치보다 높은데도 총수명은 짧
 
 ```text
 ΔQ(V) = Qdlin_cycle100(V) − Qdlin_cycle10(V)
-분산 피처 = log10(Var(ΔQ), ddof=1)
+분산 피처 = log10(Var(ΔQ, ddof=1))
 최솟값 피처 = min(ΔQ − median(ΔQ))
 ```
 
@@ -181,11 +181,11 @@ Batch 1·3에는 500사이클 미만 셀이 없으므로 두 배치 안에서 �
 
 ![충전 정책별 평균 수명과 표본 수](results/figures/06_policy.png)
 
-Batch 1에서 `8C(15%)-3.6C`의 평균 수명은 1,008사이클, `8C(35%)-3.6C`는 608사이클이다(각 n=2). 최대 C-rate가 같아도 고전류가 지속되는 SOC 구간과 이후 전류 단계가 다르면 수명이 달라질 수 있음을 보여준다.
+Batch 1에서 `8C(15%)-3.6C`의 평균 수명은 1,008.5사이클, `8C(35%)-3.6C`는 607.5사이클이다(각 n=2). 최대 C-rate가 같아도 고전류가 지속되는 SOC 구간과 이후 전류 단계가 다르면 수명이 달라질 수 있음을 보여준다.
 
 ![유효 C-rate와 총수명](results/figures/07_c_rate.png)
 
-0–80% SOC 구간의 정책 기반 유효 C-rate와 수명의 Spearman 상관은 Batch 1 −0.435, Batch 2 −0.321, Batch 3 −0.157이다. Batch 2·3의 유효 C-rate 범위가 좁아 단일 수치로는 정책별 수명 차이를 충분히 설명하기 어렵다.
+0–80% SOC 구간의 정책 기반 유효 C-rate와 수명의 Spearman 상관은 Batch 1 -0.435, Batch 2 +0.321, Batch 3 -0.157이다. Batch 2는 양의 상관으로 다른 두 배치와 방향이 다르므로, 충전 속도만으로 수명을 일률적으로 설명할 수 없다. Batch 2·3의 유효 C-rate 범위가 좁아 단일 수치로는 정책별 수명 차이를 충분히 설명하기 어렵다.
 
 ![실측 충전 전류 패턴과 초기 용량 변화](results/figures/09_current_patterns.png)
 
